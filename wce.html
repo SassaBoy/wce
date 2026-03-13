@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCE Consulting Engineers | Windhoek Namibia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --forest:#0D2B1A;
+  --forest2:#132E1C;
+  --green:#1A4A28;
+  --lime:#4A8C3F;
+  --silver:#B8C8B0;
+  --cream:#F0EDE6;
+  --white:#FFFFFF;
+  --gray:#7A9080;
+  --light:#C8D8C0;
+  --red:#8B2020;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--forest);color:var(--cream);overflow-x:hidden;cursor:none;}
+.cursor{width:10px;height:10px;background:var(--lime);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform 0.1s;}
+.cursor-ring{width:32px;height:32px;border:1.5px solid rgba(74,140,63,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform 0.18s ease,width 0.3s,height 0.3s;}
+.cursor-ring.hovered{width:48px;height:48px;border-color:var(--lime);}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.35;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,padding 0.4s;}
+nav.scrolled{background:rgba(13,43,26,0.93);backdrop-filter:blur(16px);padding:14px 60px;border-bottom:1px solid rgba(74,140,63,0.18);}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo-mark{width:44px;height:44px;background:var(--lime);border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.nav-logo-mark span{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:var(--forest);letter-spacing:0;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-text .name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:2px;color:var(--white);}
+.nav-logo-text .sub{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--lime);text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none;}
+.nav-links a{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--light);text-decoration:none;position:relative;transition:color 0.3s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--lime);transition:width 0.3s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{padding:10px 24px;background:transparent;border:1px solid var(--lime);color:var(--lime)!important;border-radius:2px;transition:background 0.3s,color 0.3s!important;}
+.nav-cta:hover{background:var(--lime)!important;color:var(--forest)!important;}
+.nav-cta:hover::after{display:none;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.nav-hamburger span{width:26px;height:2px;background:var(--cream);display:block;}
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(13,43,26,0.97);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;backdrop-filter:blur(20px);}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;letter-spacing:3px;color:var(--cream);text-decoration:none;transition:color 0.3s;}
+.mobile-nav a:hover{color:var(--lime);}
+.mobile-close{position:absolute;top:28px;right:28px;background:none;border:none;cursor:pointer;color:var(--cream);font-size:28px;}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--forest);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 45%,rgba(26,74,40,0.6) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 15% 75%,rgba(74,140,63,0.06) 0%,transparent 60%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(74,140,63,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(74,140,63,0.05) 1px,transparent 1px);background-size:90px 90px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 80%);}
+.hero-content{position:relative;z-index:2;padding:120px 60px 80px;max-width:1400px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(74,140,63,0.12);border:1px solid rgba(74,140,63,0.35);padding:8px 18px;border-radius:100px;margin-bottom:32px;animation:fadeUp 0.8s ease both;}
+.hero-badge-dot{width:6px;height:6px;background:var(--lime);border-radius:50%;animation:pulse 2s infinite;}
+.hero-badge span{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--lime);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(56px,7vw,96px);line-height:0.92;letter-spacing:1px;color:var(--white);animation:fadeUp 0.9s 0.1s ease both;}
+.hero-title em{color:var(--lime);font-style:normal;}
+.hero-title .line-accent{display:block;font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,64px);font-style:italic;color:var(--cream);font-weight:400;}
+.hero-desc{margin-top:28px;font-size:16px;font-weight:300;line-height:1.8;color:var(--gray);max-width:480px;animation:fadeUp 1s 0.2s ease both;}
+.hero-actions{margin-top:44px;display:flex;gap:18px;flex-wrap:wrap;animation:fadeUp 1s 0.3s ease both;}
+.btn-primary{display:inline-flex;align-items:center;gap:12px;padding:16px 36px;background:var(--lime);color:var(--forest);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:background 0.3s,transform 0.2s,box-shadow 0.3s;box-shadow:0 8px 32px rgba(74,140,63,0.3);}
+.btn-primary:hover{background:#5aaa4f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,140,63,0.45);}
+.btn-primary svg{transition:transform 0.3s;}
+.btn-primary:hover svg{transform:translateX(4px);}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:transparent;border:1px solid rgba(200,216,192,0.35);color:var(--cream);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:border-color 0.3s,color 0.3s;}
+.btn-outline:hover{border-color:var(--lime);color:var(--lime);}
+.hero-stats{margin-top:60px;display:flex;gap:40px;animation:fadeUp 1s 0.4s ease both;}
+.hero-stat .num{font-family:'Barlow Condensed',sans-serif;font-size:44px;line-height:1;color:var(--white);}
+.hero-stat .num span{color:var(--lime);}
+.hero-stat .label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:4px;}
+.hero-right{animation:fadeLeft 1s 0.3s ease both;}
+.hero-visual-card{background:rgba(19,46,28,0.85);border:1px solid rgba(74,140,63,0.22);border-radius:4px;padding:32px;backdrop-filter:blur(10px);position:relative;overflow:hidden;}
+.hero-visual-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--lime),transparent);}
+.hvc-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--lime);margin-bottom:20px;}
+.disciplines-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.disc-item{display:flex;align-items:center;gap:14px;padding:16px 18px;background:rgba(13,43,26,0.6);border:1px solid rgba(74,140,63,0.12);border-radius:3px;transition:border-color 0.3s,background 0.3s;}
+.disc-item:hover{border-color:rgba(74,140,63,0.4);background:rgba(26,74,40,0.4);}
+.disc-icon{width:38px;height:38px;flex-shrink:0;background:rgba(74,140,63,0.12);border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.disc-icon svg{width:20px;height:20px;color:var(--lime);}
+.disc-name{font-size:12px;font-weight:700;line-height:1.3;color:var(--cream);}
+.disc-count{font-size:10px;color:var(--gray);margin-top:2px;letter-spacing:1px;}
+.hero-scroll{position:absolute;bottom:40px;left:60px;display:flex;align-items:center;gap:14px;opacity:0.5;animation:fadeUp 1s 0.8s ease both;}
+.scroll-line{width:40px;height:1px;background:var(--gray);}
+.scroll-text{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);}
+
+/* SECTIONS */
+section{position:relative;z-index:2;}
+.section-inner{max-width:1400px;margin:0 auto;padding:100px 60px;}
+.section-label{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--lime);margin-bottom:20px;}
+.section-label::before{content:'';display:block;width:28px;height:1px;background:var(--lime);}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:1px;color:var(--white);}
+.section-title em{font-family:'Playfair Display',serif;color:var(--lime);font-style:italic;}
+.section-desc{font-size:16px;font-weight:300;line-height:1.8;color:var(--gray);max-width:560px;margin-top:16px;}
+
+/* SERVICES */
+#services{background:var(--forest2);}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;gap:40px;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.service-card{background:rgba(13,43,26,0.7);padding:44px 36px;position:relative;overflow:hidden;cursor:pointer;transition:background 0.4s;border:1px solid rgba(74,140,63,0.08);}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
+.service-card:hover{background:rgba(26,74,40,0.5);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-num{font-family:'Barlow Condensed',sans-serif;font-size:64px;line-height:1;color:rgba(74,140,63,0.07);position:absolute;top:24px;right:28px;letter-spacing:-2px;transition:color 0.4s;}
+.service-card:hover .service-num{color:rgba(74,140,63,0.14);}
+.service-icon{width:56px;height:56px;background:rgba(74,140,63,0.1);border:1px solid rgba(74,140,63,0.25);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:background 0.3s;}
+.service-card:hover .service-icon{background:rgba(74,140,63,0.18);}
+.service-icon svg{width:26px;height:26px;color:var(--lime);}
+.service-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--white);margin-bottom:14px;letter-spacing:0.5px;}
+.service-desc{font-size:14px;font-weight:300;line-height:1.8;color:var(--gray);}
+.service-link{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lime);text-decoration:none;transition:gap 0.3s;}
+.service-card:hover .service-link{gap:14px;}
+
+/* VALUES */
+#values{background:var(--lime);padding:0;}
+.values-strip{display:flex;overflow:hidden;}
+.values-item{flex:1;padding:40px 36px;border-right:1px solid rgba(13,43,26,0.2);display:flex;flex-direction:column;gap:10px;transition:background 0.3s;}
+.values-item:last-child{border-right:none;}
+.values-item:hover{background:rgba(13,43,26,0.1);}
+.values-item .v-num{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(13,43,26,0.5);}
+.values-item .v-name{font-family:'Barlow Condensed',sans-serif;font-size:30px;letter-spacing:1px;color:var(--forest);}
+.values-item .v-desc{font-size:13px;line-height:1.7;color:rgba(13,43,26,0.75);}
+
+/* PROJECTS */
+#projects{background:var(--forest);}
+.projects-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
+.projects-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:3px;}
+.project-card{position:relative;overflow:hidden;background:var(--green);min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:transform 0.4s;}
+.project-card:hover{transform:scale(1.01);z-index:2;}
+.project-card.featured{grid-row:span 2;min-height:580px;}
+.project-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,43,26,0.2) 0%,rgba(13,43,26,0.85) 100%);z-index:1;}
+.project-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s ease;}
+.project-card:hover .project-img-bg{transform:scale(1.05);}
+.project-content{position:relative;z-index:2;}
+.project-tag{display:inline-block;padding:5px 12px;background:rgba(74,140,63,0.2);border:1px solid rgba(74,140,63,0.4);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8fcc80;border-radius:2px;margin-bottom:14px;}
+.project-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.5px;color:var(--white);line-height:1.1;}
+.project-card.featured .project-name{font-size:38px;}
+.project-location{font-size:12px;color:var(--gray);margin-top:8px;letter-spacing:1px;}
+
+/* ABOUT */
+#about{background:var(--forest2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.about-accent-line{display:block;width:60px;height:3px;background:var(--lime);margin-bottom:32px;}
+.about-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(38px,4vw,56px);line-height:1.05;letter-spacing:1px;color:var(--white);margin-bottom:28px;}
+.about-body{font-size:16px;font-weight:300;line-height:1.9;color:var(--gray);margin-bottom:20px;}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+.pillar{padding:20px;background:rgba(13,43,26,0.5);border:1px solid rgba(74,140,63,0.12);border-left:3px solid var(--lime);border-radius:0 2px 2px 0;}
+.pillar-name{font-weight:700;font-size:14px;color:var(--white);margin-bottom:6px;}
+.pillar-desc{font-size:12px;font-weight:300;line-height:1.6;color:var(--gray);}
+.about-big-num{font-family:'Barlow Condensed',sans-serif;font-size:220px;line-height:1;color:rgba(74,140,63,0.04);position:absolute;top:-40px;left:-20px;pointer-events:none;user-select:none;}
+.about-metrics{display:grid;grid-template-columns:1fr 1fr;gap:3px;position:relative;z-index:2;}
+.metric-box{padding:36px 28px;background:rgba(13,43,26,0.7);border:1px solid rgba(74,140,63,0.1);text-align:center;transition:border-color 0.3s;}
+.metric-box:hover{border-color:rgba(74,140,63,0.3);}
+.metric-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;letter-spacing:2px;color:var(--lime);}
+.metric-label{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-top:6px;line-height:1.5;}
+.about-certif{margin-top:3px;padding:24px 28px;background:var(--lime);display:flex;align-items:center;gap:18px;}
+.certif-icon{font-size:28px;}
+.certif-text .ct{font-size:13px;font-weight:700;color:var(--forest);}
+.certif-text .cs{font-size:11px;color:rgba(13,43,26,0.65);margin-top:2px;}
+.about-right{position:relative;}
+.about-visual{position:relative;}
+
+/* CLIENTS */
+#clients{background:var(--forest);}
+.clients-title{text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:5px;color:var(--gray);text-transform:uppercase;margin-bottom:44px;}
+.clients-track-wrap{overflow:hidden;position:relative;}
+.clients-track-wrap::before,.clients-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;}
+.clients-track-wrap::before{left:0;background:linear-gradient(90deg,var(--forest),transparent);}
+.clients-track-wrap::after{right:0;background:linear-gradient(-90deg,var(--forest),transparent);}
+.clients-track{display:flex;gap:60px;align-items:center;width:max-content;animation:marquee 26s linear infinite;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.client-logo{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:3px;padding:18px 32px;font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--gray);white-space:nowrap;transition:color 0.3s,border-color 0.3s;flex-shrink:0;}
+.client-logo:hover{color:var(--cream);border-color:rgba(74,140,63,0.25);}
+
+/* CAREERS */
+#careers{background:var(--forest2);}
+.careers-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.job-listings{display:flex;flex-direction:column;gap:2px;margin-top:40px;}
+.job-card{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;background:rgba(13,43,26,0.6);border:1px solid rgba(74,140,63,0.1);border-left:3px solid transparent;transition:border-color 0.3s,background 0.3s;cursor:pointer;gap:20px;}
+.job-card:hover{border-left-color:var(--lime);background:rgba(26,74,40,0.3);}
+.job-title{font-size:15px;font-weight:700;color:var(--white);}
+.job-meta{font-size:12px;color:var(--gray);margin-top:4px;}
+.job-type{padding:6px 14px;background:rgba(74,140,63,0.12);border:1px solid rgba(74,140,63,0.25);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lime);border-radius:2px;white-space:nowrap;}
+.careers-cta{padding:44px;background:rgba(13,43,26,0.8);border:1px solid rgba(74,140,63,0.15);border-top:3px solid var(--lime);margin-top:32px;}
+.careers-cta h3{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--white);margin-bottom:12px;}
+.careers-cta p{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:24px;}
+
+/* CONTACT */
+#contact{background:var(--forest);}
+.contact-wrapper{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;}
+.contact-tagline{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);font-style:italic;color:var(--cream);line-height:1.3;margin-bottom:36px;margin-top:20px;}
+.contact-details{display:flex;flex-direction:column;gap:24px;margin-top:44px;}
+.contact-item{display:flex;gap:20px;align-items:flex-start;}
+.contact-icon{width:44px;height:44px;flex-shrink:0;background:rgba(74,140,63,0.1);border:1px solid rgba(74,140,63,0.25);border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.contact-icon svg{width:20px;height:20px;color:var(--lime);}
+.contact-item-text .label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--lime);margin-bottom:4px;}
+.contact-item-text .val{font-size:15px;color:var(--cream);}
+.contact-form{background:rgba(19,46,28,0.6);border:1px solid rgba(74,140,63,0.15);padding:48px;border-radius:4px;}
+.form-title{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;color:var(--white);margin-bottom:32px;letter-spacing:1px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.form-group label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--lime);}
+.form-group input,.form-group select,.form-group textarea{background:rgba(13,43,26,0.8);border:1px solid rgba(74,140,63,0.15);color:var(--cream);padding:14px 18px;font-family:'Lato',sans-serif;font-size:14px;border-radius:2px;outline:none;transition:border-color 0.3s;width:100%;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--lime);}
+.form-group select option{background:var(--forest2);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-submit{width:100%;padding:16px;background:var(--lime);color:var(--forest);font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background 0.3s,transform 0.2s;}
+.form-submit:hover{background:#5aaa4f;transform:translateY(-1px);}
+
+/* FOOTER */
+footer{background:#060f09;border-top:1px solid rgba(74,140,63,0.1);position:relative;z-index:2;}
+.footer-inner{max-width:1400px;margin:0 auto;padding:64px 60px 40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:56px;}
+.footer-brand p{font-size:14px;font-weight:300;line-height:1.8;color:var(--gray);margin-top:20px;max-width:280px;}
+.footer-col h4{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--lime);margin-bottom:20px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul a{font-size:13px;color:var(--gray);text-decoration:none;transition:color 0.3s;}
+.footer-col ul a:hover{color:var(--cream);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.3);}
+.footer-social{display:flex;gap:14px;}
+.social-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,0.12);border-radius:2px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:border-color 0.3s,background 0.3s;}
+.social-btn:hover{border-color:var(--lime);background:rgba(74,140,63,0.1);}
+.social-btn svg{width:16px;height:16px;color:var(--gray);}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}.reveal-delay-4{transition-delay:0.4s;}
+@media(max-width:1100px){.hero-content{grid-template-columns:1fr;}.hero-right{display:none;}.services-grid{grid-template-columns:1fr 1fr;}.projects-grid{grid-template-columns:1fr 1fr;}.project-card.featured{grid-row:span 1;min-height:280px;}.about-grid{grid-template-columns:1fr;gap:60px;}.careers-grid{grid-template-columns:1fr;}.contact-wrapper{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){nav{padding:18px 24px;}nav.scrolled{padding:14px 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.section-inner{padding:70px 24px;}.hero-content{padding:100px 24px 60px;}.services-grid{grid-template-columns:1fr;}.projects-grid{grid-template-columns:1fr;}.contact-form{padding:28px 20px;}.form-row{grid-template-columns:1fr;}.values-strip{flex-direction:column;}.footer-inner{padding:48px 24px 28px;}.footer-grid{grid-template-columns:1fr;gap:36px;}body{cursor:auto;}.cursor,.cursor-ring{display:none;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+  <a href="#hero" onclick="closeMobileNav()">Home</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#careers" onclick="closeMobileNav()">Careers</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-mark"><span>WCE</span></div>
+    <div class="nav-logo-text"><span class="name">Windhoek Consulting</span><span class="sub">Engineers · Since 1979</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#careers">Careers</a></li>
+    <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge"><div class="hero-badge-dot"></div><span>45 Years of Engineering Excellence · Namibia</span></div>
+      <h1 class="hero-title">Namibia's<br><em>Pioneer</em><br><span class="line-accent">Engineering Firm</span></h1>
+      <p class="hero-desc">For over 45 years, WCE has delivered exceptional consulting engineering across transportation, infrastructure, renewable energy, green hydrogen, and mining engineering throughout Namibia.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Our Work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="btn-outline">Start a Project</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">45<span>+</span></div><div class="label">Years Active</div></div>
+        <div class="hero-stat"><div class="num">200<span>+</span></div><div class="label">Projects Done</div></div>
+        <div class="hero-stat"><div class="num">8</div><div class="label">Disciplines</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual-card">
+        <div class="hvc-label">Our Disciplines</div>
+        <div class="disciplines-grid">
+          <div class="disc-item"><div class="disc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/><path d="M5 20V4M19 20V4"/></svg></div><div><div class="disc-name">Transportation</div><div class="disc-count">Roads & Rail</div></div></div>
+          <div class="disc-item"><div class="disc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="1"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div><div class="disc-name">Structural</div><div class="disc-count">Buildings</div></div></div>
+          <div class="disc-item"><div class="disc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div><div><div class="disc-name">Green Hydrogen</div><div class="disc-count">Future Energy</div></div></div>
+          <div class="disc-item"><div class="disc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="disc-name">Electrical</div><div class="disc-count">Power Systems</div></div></div>
+          <div class="disc-item"><div class="disc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div><div class="disc-name">Project Mgmt</div><div class="disc-count">EPCM</div></div></div>
+          <div class="disc-item"><div class="disc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg></div><div><div class="disc-name">Mining Eng.</div><div class="disc-count">Extraction</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><div class="scroll-text">Scroll to explore</div></div>
+</section>
+
+<section id="services"><div class="section-inner">
+  <div class="services-header"><div><div class="section-label">What We Do</div><h2 class="section-title">Our <em>Services</em></h2></div><p class="section-desc">45 years of multi-disciplinary excellence — from green hydrogen to rural electrification, WCE pioneers Namibia's engineering future.</p></div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-num">01</div><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div><div class="service-name">Transportation Engineering</div><div class="service-desc">Efficiently moving people and goods safely. Road design, traffic engineering, and transport planning for Namibia's growing infrastructure demands.</div><a href="#contact" class="service-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="service-card reveal reveal-delay-1"><div class="service-num">02</div><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg></div><div class="service-name">Urban & Rural Infrastructure</div><div class="service-desc">Top-notch engineering solutions for both urban and rural development projects — bulk services, structural design, and community infrastructure.</div><a href="#contact" class="service-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="service-card reveal reveal-delay-2"><div class="service-num">03</div><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div><div class="service-name">Renewable Energy & Green Hydrogen</div><div class="service-desc">At the forefront of Namibia's green hydrogen revolution. Comprehensive engineering solutions for solar, wind, and next-generation green energy infrastructure.</div><a href="#contact" class="service-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="service-card reveal"><div class="service-num">04</div><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="service-name">Electrical Engineering</div><div class="service-desc">Experienced engineers specializing in power planning, electrical distribution, and energy-efficient building services systems design and implementation.</div><a href="#contact" class="service-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="service-card reveal reveal-delay-1"><div class="service-num">05</div><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div class="service-name">EPCM Services</div><div class="service-desc">Full Engineering, Procurement, Construction and Management services for complex multidisciplinary projects across Namibia's public and private sectors.</div><a href="#contact" class="service-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="service-card reveal reveal-delay-2"><div class="service-num">06</div><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="service-name">Mining Engineering</div><div class="service-desc">Planning, evaluating, analyzing, and improving mining operations. Tailored engineering solutions for Namibia's growing minerals and resources sector.</div><a href="#contact" class="service-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  </div>
+</div></section>
+
+<section id="values"><div class="values-strip">
+  <div class="values-item"><div class="v-num">01</div><div class="v-name">Excellence</div><div class="v-desc">45 years of delivering pioneering, exceptional engineering work that shapes Namibia's infrastructure and future.</div></div>
+  <div class="values-item"><div class="v-num">02</div><div class="v-name">Sustainability</div><div class="v-desc">From green hydrogen to renewable energy — we engineer solutions that protect the environment for generations.</div></div>
+  <div class="values-item"><div class="v-num">03</div><div class="v-name">Innovation</div><div class="v-desc">First movers in green hydrogen and renewable energy engineering. We don't follow trends — we set them.</div></div>
+  <div class="values-item"><div class="v-num">04</div><div class="v-name">Partnership</div><div class="v-desc">Long-term client relationships built on reliability, trust, and exceptional delivery on every single project.</div></div>
+</div></section>
+
+<section id="projects"><div class="section-inner">
+  <div class="projects-header reveal"><div><div class="section-label">Our Work</div><h2 class="section-title">Featured <em>Projects</em></h2></div><a href="#contact" class="btn-outline">All Projects</a></div>
+  <div class="projects-grid">
+    <div class="project-card featured reveal"><div class="project-img-bg" style="background:linear-gradient(135deg,#1A4A28 0%,#0D2B1A 100%);"></div><div class="project-bg"></div><div class="project-content"><div class="project-tag">Construction</div><div class="project-name">Town Lodge Hotel at The Steps — Windhoek</div><div class="project-location">📍 Windhoek, Namibia · 151-Room 4-Storey Hotel</div></div></div>
+    <div class="project-card reveal reveal-delay-1"><div class="project-img-bg" style="background:linear-gradient(135deg,#2A5C38 0%,#1A3A22 100%);"></div><div class="project-bg"></div><div class="project-content"><div class="project-tag">Renewable Energy</div><div class="project-name">Hangana Seafood Fish Processing & Cold Storage</div><div class="project-location">📍 Walvis Bay, Namibia</div></div></div>
+    <div class="project-card reveal reveal-delay-2"><div class="project-img-bg" style="background:linear-gradient(135deg,#3A5C1A 0%,#1A2A0A 100%);"></div><div class="project-bg"></div><div class="project-content"><div class="project-tag">Green Hydrogen</div><div class="project-name">Green Hydrogen Production Infrastructure Study</div><div class="project-location">📍 Namibia</div></div></div>
+    <div class="project-card reveal reveal-delay-1"><div class="project-img-bg" style="background:linear-gradient(135deg,#1A3A4A 0%,#0A1A2A 100%);"></div><div class="project-bg"></div><div class="project-content"><div class="project-tag">Transportation</div><div class="project-name">Roads Authority National Road Upgrade Programme</div><div class="project-location">📍 Multiple Regions, Namibia</div></div></div>
+    <div class="project-card reveal reveal-delay-2"><div class="project-img-bg" style="background:linear-gradient(135deg,#4A3A1A 0%,#2A1A0A 100%);"></div><div class="project-bg"></div><div class="project-content"><div class="project-tag">Urban Infrastructure</div><div class="project-name">City of Windhoek Bulk Services Upgrade</div><div class="project-location">📍 Windhoek, Namibia</div></div></div>
+  </div>
+</div></section>
+
+<section id="about"><div class="section-inner">
+  <div class="about-grid">
+    <div class="about-left reveal"><span class="about-accent-line"></span><div class="section-label">Who We Are</div><h2 class="about-title">45 Years Building <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--lime)">Namibia's</em> Future</h2><p class="about-body">Windhoek Consulting Engineers has maintained a strong reputation as a pioneer in the industry for over four decades, delivering excellence from planning and design through construction and management.</p><p class="about-body">Our expertise spans transportation, urban and rural infrastructure, bulk services, structural design, mechanical systems, electrical engineering, green hydrogen, oil and gas, renewable energy, and mining engineering.</p><div class="about-pillars"><div class="pillar"><div class="pillar-name">Mission</div><div class="pillar-desc">To be Namibia's most trusted and innovative local engineering partner, delivering world-class solutions on every project.</div></div><div class="pillar"><div class="pillar-name">Vision</div><div class="pillar-desc">Engineering a sustainable, prosperous Namibia for current and future generations through technical excellence.</div></div></div></div>
+    <div class="about-right reveal reveal-delay-2"><div class="about-visual"><div class="about-big-num">45</div><div class="about-metrics"><div class="metric-box"><div class="metric-num">45+</div><div class="metric-label">Years Established</div></div><div class="metric-box"><div class="metric-num">200+</div><div class="metric-label">Projects Delivered</div></div><div class="metric-box"><div class="metric-num">8</div><div class="metric-label">Disciplines</div></div><div class="metric-box"><div class="metric-num">100%</div><div class="metric-label">Namibian Owned</div></div></div><div class="about-certif"><div class="certif-icon">🏅</div><div class="certif-text"><div class="ct">ECN & ACEN Registered Practice</div><div class="cs">Engineering Council of Namibia · EPCM Certified</div></div></div></div></div>
+  </div>
+</div></section>
+
+<section id="clients"><div class="section-inner" style="padding-bottom:80px;"><div class="clients-title reveal">Trusted By</div><div class="clients-track-wrap reveal"><div class="clients-track"><div class="client-logo">Hangana Seafood</div><div class="client-logo">Town Lodge Group</div><div class="client-logo">Roads Authority</div><div class="client-logo">City of Windhoek</div><div class="client-logo">NamPower</div><div class="client-logo">Ministry of Works</div><div class="client-logo">NamWater</div><div class="client-logo">Namibia Ports Authority</div><div class="client-logo">Hangana Seafood</div><div class="client-logo">Town Lodge Group</div><div class="client-logo">Roads Authority</div><div class="client-logo">City of Windhoek</div><div class="client-logo">NamPower</div><div class="client-logo">Ministry of Works</div><div class="client-logo">NamWater</div><div class="client-logo">Namibia Ports Authority</div></div></div></div></section>
+
+<section id="careers"><div class="section-inner">
+  <div class="careers-grid">
+    <div><div class="section-label reveal">Join Our Team</div><h2 class="section-title reveal">Shape Namibia's <em>Infrastructure</em></h2><p class="section-desc reveal">We seek exceptional engineers who want to work on nationally significant, pioneering projects across multiple disciplines.</p>
+    <div class="job-listings"><div class="job-card reveal"><div class="job-info"><div class="job-title">Civil Engineer (Transportation)</div><div class="job-meta">Windhoek · Full Time</div></div><div class="job-type">Open</div></div><div class="job-card reveal reveal-delay-1"><div class="job-info"><div class="job-title">Green Hydrogen Project Engineer</div><div class="job-meta">Windhoek · Full Time</div></div><div class="job-type">Open</div></div><div class="job-card reveal reveal-delay-2"><div class="job-info"><div class="job-title">Electrical Power Engineer</div><div class="job-meta">Windhoek · Full Time</div></div><div class="job-type">Open</div></div><div class="job-card reveal reveal-delay-3"><div class="job-info"><div class="job-title">Graduate Engineer (All Disciplines)</div><div class="job-meta">Windhoek · Trainee</div></div><div class="job-type">Open</div></div></div></div>
+    <div class="reveal reveal-delay-2"><div style="height:40px"></div><div class="careers-cta"><h3>Send Us Your CV</h3><p>Want to work on Namibia's most complex and exciting engineering projects? We want to hear from you.</p><a href="mailto:info@wcenamibia.com" class="btn-primary">Send Your CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div><div style="margin-top:24px;padding:32px;background:rgba(74,140,63,0.05);border:1px solid rgba(74,140,63,0.15);border-radius:4px;"><div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--lime);margin-bottom:12px;">Why WCE?</div><div style="display:flex;flex-direction:column;gap:10px;"><div style="font-size:13px;color:var(--gray);display:flex;gap:10px;"><span style="color:var(--lime)">→</span>Work on nationally significant infrastructure</div><div style="font-size:13px;color:var(--gray);display:flex;gap:10px;"><span style="color:var(--lime)">→</span>Pioneer green hydrogen — Namibia's future</div><div style="font-size:13px;color:var(--gray);display:flex;gap:10px;"><span style="color:var(--lime)">→</span>45 years of mentorship and expertise</div><div style="font-size:13px;color:var(--gray);display:flex;gap:10px;"><span style="color:var(--lime)">→</span>ECN registration support included</div></div></div></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="section-inner">
+  <div class="contact-wrapper">
+    <div class="reveal"><div class="section-label">Get In Touch</div><h2 class="section-title">Let's Build <em>Together</em></h2><p class="contact-tagline">"45 years of engineering excellence — your trusted local EPCM partner in Namibia."</p><div class="contact-details"><div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="contact-item-text"><div class="label">Location</div><div class="val">Windhoek, Namibia</div></div></div><div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="contact-item-text"><div class="label">Email</div><div class="val">info@wcenamibia.com</div></div></div><div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.63a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 17v-.08z"/></svg></div><div class="contact-item-text"><div class="label">Phone</div><div class="val">+264 (0) 61 XXX XXXX</div></div></div></div></div>
+    <div class="contact-form reveal reveal-delay-2"><div class="form-title">Send Us a Message</div><div class="form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div></div><div class="form-group"><label>Email Address</label><input type="email" placeholder="john@company.com"></div><div class="form-group"><label>Service of Interest</label><select><option value="" disabled selected>Select a discipline</option><option>Transportation Engineering</option><option>Urban & Rural Infrastructure</option><option>Renewable Energy / Green Hydrogen</option><option>Electrical Engineering</option><option>EPCM Services</option><option>Mining Engineering</option><option>General Enquiry</option></select></div><div class="form-group"><label>Project Description</label><textarea placeholder="Tell us about your project…"></textarea></div><button class="form-submit" onclick="handleFormSubmit(this)">Send Message →</button></div>
+  </div>
+</div></section>
+
+<footer><div class="footer-inner">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="#hero" class="nav-logo"><div class="nav-logo-mark"><span>WCE</span></div><div class="nav-logo-text"><span class="name">Windhoek Consulting</span><span class="sub">Engineers · Since 1979</span></div></a><p>Namibia's pioneering multi-disciplinary consulting engineers. 45 years of excellence in transportation, infrastructure, renewable energy, and mining engineering.</p></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#services">Transportation</a></li><li><a href="#services">Urban Infrastructure</a></li><li><a href="#services">Renewable Energy</a></li><li><a href="#services">Green Hydrogen</a></li><li><a href="#services">Mining Engineering</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About WCE</a></li><li><a href="#projects">Projects</a></li><li><a href="#clients">Clients</a></li><li><a href="#careers">Careers</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:info@wcenamibia.com">info@wcenamibia.com</a></li><li><a href="#">Windhoek, Namibia</a></li><li><a href="#">ECN Registered</a></li><li><a href="https://wcenamibia.com" target="_blank">wcenamibia.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Windhoek Consulting Engineers (Pty) Ltd. All rights reserved.</p><div class="footer-social"><a href="#" class="social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a></div></div>
+</div></footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.transform=`translate(${mx-5}px,${my-5}px)`;});
+function animateRing(){rx+=(mx-rx-16)*0.14;ry+=(my-ry-16)*0.14;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(animateRing);}animateRing();
+document.querySelectorAll('a,button,.service-card,.project-card,.job-card').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));});
+const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);});
+function openMobileNav(){document.getElementById('mobileNav').classList.add('open');}function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');}
+const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});reveals.forEach(el=>observer.observe(el));
+function handleFormSubmit(btn){btn.textContent='Sending…';btn.style.opacity='0.7';setTimeout(()=>{btn.textContent='✓ Message Sent!';btn.style.background='#2A7A4F';btn.style.color='white';btn.style.opacity='1';},1400);}
+</script>
+</body>
+</html>
